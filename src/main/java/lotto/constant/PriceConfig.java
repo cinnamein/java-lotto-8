@@ -12,4 +12,8 @@ public enum PriceConfig {
     PriceConfig(long value) {
         this.value = value;
     }
+
+    public long getValue() {
+        return value;
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.orchestration;
 
+import lotto.domain.PurchasePrice;
 import lotto.view.ConsoleInput;
 
 public class Orchestrator {
@@ -16,15 +17,21 @@ public class Orchestrator {
      * 로또 애플리케이션을 시작합니다.
      */
     public void run() {
-        String purchasePrice = getPurchasePrice();
+        PurchasePrice purchasePrice = getPurchasePrice();
     }
 
     /**
-     * 사용자로부터 로또 구입 금액을 입력받습니다.
-     * @return 사용자가 입력한 구입 금액
+     * 사용자로부터 구입 금액을 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
+     * @return 생성된 PurchasePrice 객체
      */
-    private String getPurchasePrice() {
-        String inputPrice = consoleInput.inputPrice();
-        return inputPrice;
+    private PurchasePrice getPurchasePrice() {
+        while (true) {
+            try {
+                String inputPrice = consoleInput.inputPrice();
+                return PurchasePrice.from(inputPrice);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
