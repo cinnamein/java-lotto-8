@@ -64,4 +64,12 @@ public class PurchasePrice {
             throw new IllegalArgumentException(ErrorMessage.MULTIPLE_ERROR.getMessage());
         }
     }
+
+    /**
+     * 로또 구매 금액으로 로또를 몇 장 구매할 수 있는지 계산합니다.
+     * @return 로또 구매 횟수
+     */
+    public int getLottoCount() {
+        return (int) (this.price / PriceConfig.MULTIPLE_OF.getValue());
+    }
 }

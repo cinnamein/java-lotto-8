@@ -2,15 +2,19 @@ package lotto.orchestration;
 
 import lotto.domain.PurchasePrice;
 import lotto.view.ConsoleInput;
+import lotto.view.ConsoleOutput;
 
 public class Orchestrator {
 
     private final ConsoleInput consoleInput;
+    private final ConsoleOutput consoleOutput;
 
     public Orchestrator(
-            ConsoleInput consoleInput
+            ConsoleInput consoleInput,
+            ConsoleOutput consoleOutput
     ) {
         this.consoleInput = consoleInput;
+        this.consoleOutput = consoleOutput;
     }
 
     /**
@@ -18,6 +22,8 @@ public class Orchestrator {
      */
     public void run() {
         PurchasePrice purchasePrice = getPurchasePrice();
+        int purchaseCount = purchasePrice.getLottoCount();
+        purchaseLotto(purchaseCount);
     }
 
     /**
@@ -33,5 +39,9 @@ public class Orchestrator {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void purchaseLotto(int purchaseCount) {
+        consoleOutput.printLottoCount(purchaseCount);
     }
 }
