@@ -15,11 +15,14 @@ import lotto.constant.LottoConfig;
 public class WinningLotto {
 
     private final List<Integer> numbers;
+    private final int bonusNumber;
 
     private WinningLotto(
-            List<Integer> numbers
+            List<Integer> numbers,
+            int bonusNumber
     ) {
         this.numbers = Collections.unmodifiableList(numbers);
+        this.bonusNumber = bonusNumber;
     }
 
     /**
@@ -29,9 +32,11 @@ public class WinningLotto {
      * @param bonusNumber    보너스 당첨 번호
      * @return WinningLotto 객체
      */
-    public static WinningLotto from(List<Integer> winningNumbers) {
+    public static WinningLotto from(List<Integer> winningNumbers, int bonusNumber) {
         validateWinningNumbers(winningNumbers);
-        return new WinningLotto(winningNumbers);
+        validateRange(bonusNumber);
+        validateDuplication(winningNumbers, bonusNumber);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
     /**
@@ -47,6 +52,22 @@ public class WinningLotto {
             return numbers;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    /**
+     * 보너스 번호를 숫자로 변환합니다.
+     *
+     * @param inputBonusNumber 당첨 보너스 번호 문자열
+     * @return 보너스 번호
+     */
+    public static int getBonusNumber(String inputBonusNumber) {
+        try {
+            int number = Integer.parseInt(inputBonusNumber.trim());
+            validateRange(number);
+            return number;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getMessage());
         }
     }
 
@@ -127,6 +148,19 @@ public class WinningLotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != LottoConfig.NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR.getMessage());
+        }
+    }
+
+    /**
+     * 당첨 번호와 보너스 번호가 중복되지 않았는지 검증합니다.
+     *
+     * @param winningNumbers 당첨 번호 6자리 배열
+     * @param bonusNumber    보너스 번호
+     * @throws IllegalArgumentException 입력된 당첨번호에 중복이 있을 경우
+     */
+    private static void validateDuplication(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }

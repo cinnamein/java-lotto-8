@@ -28,7 +28,7 @@ public class Orchestrator {
         PurchasePrice purchasePrice = getPurchasePrice();
         int purchaseCount = purchasePrice.getLottoCount();
         List<Lotto> lottos = purchaseLotto(purchaseCount);
-        getWinningLotto();
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     /**
@@ -65,10 +65,20 @@ public class Orchestrator {
     }
 
     /**
-     * 사용자로부터 당첨 번호와 보너스 번호를 입력받고 유효성 검사를 수행합니다.
+     * 사용자로부터 당첨 번호와 보너스 번호를 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
+     *
+     * @return 생성된 WinningLotto 객체
      */
-    private void getWinningLotto() {
+    private WinningLotto getWinningLotto() {
         List<Integer> winningNumbers = getWinningNumbers();
+        while (true) {
+            try {
+                int bonusNumber = getBonusNumber();
+                return WinningLotto.from(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     /**
@@ -81,6 +91,22 @@ public class Orchestrator {
             try {
                 String inputWinningNumbers = consoleInput.inputWinningNumbers();
                 return WinningLotto.getWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     * 사용자로부터 보너스 번호를 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
+     *
+     * @return 보너스 번호
+     */
+    private int getBonusNumber() {
+        while (true) {
+            try {
+                String inputBonusNumber = consoleInput.inputBonusNumber();
+                return WinningLotto.getBonusNumber(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
