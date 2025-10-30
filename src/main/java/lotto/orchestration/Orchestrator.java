@@ -1,5 +1,8 @@
 package lotto.orchestration;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.Lotto;
 import lotto.domain.PurchasePrice;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
@@ -23,7 +26,7 @@ public class Orchestrator {
     public void run() {
         PurchasePrice purchasePrice = getPurchasePrice();
         int purchaseCount = purchasePrice.getLottoCount();
-        purchaseLotto(purchaseCount);
+        List<Lotto> lottos = purchaseLotto(purchaseCount);
     }
 
     /**
@@ -41,7 +44,19 @@ public class Orchestrator {
         }
     }
 
-    private void purchaseLotto(int purchaseCount) {
+    /**
+     * 계산된 개수만큼 로또를 구매하고, 랜덤한 번호를 발급합니다.
+     * @param purchaseCount
+     * @return
+     */
+    private List<Lotto> purchaseLotto(int purchaseCount) {
         consoleOutput.printLottoCount(purchaseCount);
+        List<Lotto> purchasedLottos = new ArrayList<>();
+        for ( int i = 0 ; i < purchaseCount ; i++) {
+            Lotto purchasedLotto = Lotto.getRandomNumbers();
+            purchasedLottos.add(purchasedLotto);
+            consoleOutput.printLottoNumber(purchasedLotto);
+        }
+        return purchasedLottos;
     }
 }

@@ -7,9 +7,13 @@ public enum LottoConfig {
     NUMBER_COUNT(6),
     ;
 
-    private final long value;
+    private final int value;
 
-    LottoConfig(long value) {
+    LottoConfig(int value) {
         this.value = value;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
