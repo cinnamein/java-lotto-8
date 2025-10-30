@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.PurchasePrice;
+import lotto.domain.WinningLotto;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
@@ -27,10 +28,12 @@ public class Orchestrator {
         PurchasePrice purchasePrice = getPurchasePrice();
         int purchaseCount = purchasePrice.getLottoCount();
         List<Lotto> lottos = purchaseLotto(purchaseCount);
+        getWinningLotto();
     }
 
     /**
      * 사용자로부터 구입 금액을 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
+     *
      * @return 생성된 PurchasePrice 객체
      */
     private PurchasePrice getPurchasePrice() {
@@ -46,17 +49,41 @@ public class Orchestrator {
 
     /**
      * 계산된 개수만큼 로또를 구매하고, 랜덤한 번호를 발급합니다.
+     *
      * @param purchaseCount
-     * @return
+     * @return 발급한 로또 번호 리스트
      */
     private List<Lotto> purchaseLotto(int purchaseCount) {
         consoleOutput.printLottoCount(purchaseCount);
         List<Lotto> purchasedLottos = new ArrayList<>();
-        for ( int i = 0 ; i < purchaseCount ; i++) {
+        for (int i = 0; i < purchaseCount; i++) {
             Lotto purchasedLotto = Lotto.getRandomNumbers();
             purchasedLottos.add(purchasedLotto);
             consoleOutput.printLottoNumber(purchasedLotto);
         }
         return purchasedLottos;
+    }
+
+    /**
+     * 사용자로부터 당첨 번호와 보너스 번호를 입력받고 유효성 검사를 수행합니다.
+     */
+    private void getWinningLotto() {
+        List<Integer> winningNumbers = getWinningNumbers();
+    }
+
+    /**
+     * 사용자로부터 당첨 번호를 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
+     *
+     * @return 당첨 번호 6자리 배열
+     */
+    private List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                String inputWinningNumbers = consoleInput.inputWinningNumbers();
+                return WinningLotto.getWinningNumbers(inputWinningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

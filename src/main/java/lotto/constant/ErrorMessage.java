@@ -9,6 +9,7 @@ public enum ErrorMessage {
     PRICE_FORMAT_ERROR("입력 금액은 숫자로만 구성될 수 있습니다."),
     NUMBER_RANGE_ERROR("로또 범위는 1~45까지여야 합니다."),
     NUMBER_COUNT_ERROR("로또 번호는 6개여야 합니다."),
+    NUMBER_FORMAT_ERROR("로또 번호는 숫자로만 입력할 수 있습니다."),
     NUMBER_DUPLICATE_ERROR("로또 번호는 중복될 수 없습니다."),
     ;
 
