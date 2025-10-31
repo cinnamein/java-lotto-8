@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.Prize;
@@ -11,8 +12,10 @@ import lotto.domain.WinningLotto;
 public class LottoResultCalculator {
 
     public void calculateResult(List<Lotto> lottos, WinningLotto winningLotto) {
+        HashMap<Prize, Integer> prizeCount = new HashMap<>();
         for (Lotto lotto : lottos) {
-            checkWinningPrize(lotto, winningLotto);
+            Prize prize = checkWinningPrize(lotto, winningLotto);
+            prizeCount.merge(prize, 1, Integer::sum);
         }
     }
 
