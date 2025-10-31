@@ -3,6 +3,7 @@ package lotto.orchestration;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoResultCalculator;
@@ -33,6 +34,7 @@ public class Orchestrator {
         int purchaseCount = purchasePrice.getLottoCount();
         List<Lotto> lottos = purchaseLotto(purchaseCount);
         WinningLotto winningLotto = getWinningLotto();
+        printResult(lottos, winningLotto, purchasePrice);
     }
 
     /**
@@ -115,5 +117,17 @@ public class Orchestrator {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    /**
+     * 로또 당첨 결과를 계산하고 출력합니다.
+     *
+     * @param lottos        구매한 로또 리스트
+     * @param winningLotto  당첨 번호
+     * @param purchasePrice 구매한 로또 가격
+     */
+    private void printResult(List<Lotto> lottos, WinningLotto winningLotto, PurchasePrice purchasePrice) {
+        LottoResult lottoResult = lottoResultCalculator.calculateResult(lottos, winningLotto, purchasePrice);
+        consoleOutput.printResult(lottoResult);
     }
 }

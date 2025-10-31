@@ -4,7 +4,7 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.PriceConfig;
 
 /**
- * 구매한 로또 금액에 대한 유효성 검사를 수행하는 클래스입니다.
+ * 구매한 로또 금액 도메인 클래스입니다.
  */
 public class PurchasePrice {
 
@@ -24,6 +24,10 @@ public class PurchasePrice {
         validateRange(inputPriceLong);
         validateMultiple(inputPriceLong);
         return new PurchasePrice(inputPriceLong);
+    }
+
+    public long getPrice() {
+        return price;
     }
 
     /**
