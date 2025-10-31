@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
+import lotto.service.LottoResultCalculator;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
@@ -12,13 +13,16 @@ public class Orchestrator {
 
     private final ConsoleInput consoleInput;
     private final ConsoleOutput consoleOutput;
+    private final LottoResultCalculator lottoResultCalculator;
 
     public Orchestrator(
             ConsoleInput consoleInput,
-            ConsoleOutput consoleOutput
+            ConsoleOutput consoleOutput,
+            LottoResultCalculator lottoResultCalculator
     ) {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
+        this.lottoResultCalculator = lottoResultCalculator;
     }
 
     /**
@@ -90,7 +94,7 @@ public class Orchestrator {
         while (true) {
             try {
                 String inputWinningNumbers = consoleInput.inputWinningNumbers();
-                return WinningLotto.getWinningNumbers(inputWinningNumbers);
+                return WinningLotto.parseWinningNumbers(inputWinningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -106,7 +110,7 @@ public class Orchestrator {
         while (true) {
             try {
                 String inputBonusNumber = consoleInput.inputBonusNumber();
-                return WinningLotto.getBonusNumber(inputBonusNumber);
+                return WinningLotto.parseBonusNumber(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

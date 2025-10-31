@@ -25,6 +25,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     /**
      * 당첨 번호 객체를 생성합니다.
      *
@@ -45,7 +53,7 @@ public class WinningLotto {
      * @param inputWinningNumbers 당첨 번호 입력값 문자열
      * @return 6자리 당첨 번호 배열
      */
-    public static List<Integer> getWinningNumbers(String inputWinningNumbers) {
+    public static List<Integer> parseWinningNumbers(String inputWinningNumbers) {
         try {
             List<Integer> numbers = parseNumbers(inputWinningNumbers);
             validateWinningNumbers(numbers);
@@ -61,7 +69,7 @@ public class WinningLotto {
      * @param inputBonusNumber 당첨 보너스 번호 문자열
      * @return 보너스 번호
      */
-    public static int getBonusNumber(String inputBonusNumber) {
+    public static int parseBonusNumber(String inputBonusNumber) {
         try {
             int number = Integer.parseInt(inputBonusNumber.trim());
             validateRange(number);
