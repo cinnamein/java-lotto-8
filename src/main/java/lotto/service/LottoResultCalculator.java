@@ -55,4 +55,16 @@ public class LottoResultCalculator {
     private boolean checkBonusNumber(Lotto lotto, WinningLotto winningLotto) {
         return lotto.getNumbers().contains(winningLotto.getBonusNumber());
     }
+
+    /**
+     * 당첨 금액의 총합을 계산합니다.
+     *
+     * @param prizeCount 당첨 등수별 횟수
+     * @return 당첨 금액 총합
+     */
+    private void calculateYield(HashMap<Prize, Integer> prizeCount) {
+        long totalPrize = prizeCount.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * (long) entry.getValue())
+                .sum();
+    }
 }
