@@ -50,6 +50,16 @@ public class ConsoleOutput {
     }
 
     /**
+     * 총 수익률을 출력합니다.
+     *
+     * @param yield 수익률
+     */
+    public void printYield(double yield) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
+        System.out.println("총 수익률은 " + decimalFormat.format(yield) + "%입니다.");
+    }
+
+    /**
      * 당첨 결과를 순서에 맞게 정렬합니다.
      *
      * @return 정렬된 결과
