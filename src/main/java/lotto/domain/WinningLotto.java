@@ -90,14 +90,22 @@ public class WinningLotto {
         String[] winningNumbers = inputWinningNumbers.split(",");
         return Arrays.stream(winningNumbers)
                 .map(String::trim)
-                .map(s -> {
-                    try {
-                        return Integer.parseInt(s);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getMessage());
-                    }
-                })
+                .map(WinningLotto::parseNumber)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * 입력한 값을 숫자로 변환합니다.
+     *
+     * @param numberString String 타입의 값
+     * @return 변환한 정수형 값
+     */
+    private static int parseNumber(String numberString) {
+        try {
+            return Integer.parseInt(numberString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_FORMAT_ERROR.getMessage());
+        }
     }
 
     /**
