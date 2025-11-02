@@ -51,7 +51,7 @@ public class WinningLotto {
      * 당첨 번호 6자리를 숫자 배열로 변환합니다.
      *
      * @param inputWinningNumbers 당첨 번호 입력값 문자열
-     * @return 6자리 당첨 번호 배열
+     * @return 6자리 당첨 번호 리스트
      */
     public static List<Integer> parseWinningNumbers(String inputWinningNumbers) {
         try {

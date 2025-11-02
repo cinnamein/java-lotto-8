@@ -17,8 +17,9 @@ public class LottoResultCalculator {
 
     /**
      * 로또 당첨 횟수와 수익률을 계산합니다.
-     * @param lottos 구매한 로또 리스트
-     * @param winningLotto 당첨 숫자
+     *
+     * @param lottos        구매한 로또 리스트
+     * @param winningLotto  당첨 숫자
      * @param purchasePrice 구매한 로또 금액
      * @return 로또 당첨 결과
      */
@@ -33,10 +34,11 @@ public class LottoResultCalculator {
     }
 
     /**
-     * 구매한 로또의 당첨 등수를 계산한 뒤 등수를 반환합니다.
+     * 구매한 로또의 당첨 등수를 계산한 뒤 결과를 반환합니다.
      *
      * @param lotto        구매한 로또 객체
      * @param winningLotto 당첨 번호 객체
+     * @return 해당 로또의 당첨 등수
      */
     private Prize checkWinningPrize(Lotto lotto, WinningLotto winningLotto) {
         boolean isBonusMatch = checkBonusNumber(lotto, winningLotto);
@@ -73,7 +75,7 @@ public class LottoResultCalculator {
      * 당첨 금액의 수익률을 계산합니다.
      *
      * @param prizeCount 당첨 등수별 횟수
-     * @return 당첨 금액 총합
+     * @return 최종 수익률을 소수점 둘째 자리에서 반올림한 값
      */
     private double calculateYield(HashMap<Prize, Integer> prizeCount, PurchasePrice purchasePrice) {
         long totalPrize = prizeCount.entrySet().stream()

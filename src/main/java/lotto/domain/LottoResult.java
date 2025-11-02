@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * 로또 당첨 결과 도메인 클래스입니다.
+ */
 public class LottoResult {
 
     private final Map<Prize, Integer> prizeCount;

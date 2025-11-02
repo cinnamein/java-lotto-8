@@ -11,6 +11,9 @@ import lotto.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Prize;
 
+/**
+ * 사용자로부터 콘솔 출력을 담당하는 클래스입니다.
+ */
 public class ConsoleOutput {
 
     /**
@@ -36,7 +39,7 @@ public class ConsoleOutput {
     /**
      * 로또 당첨 결과를 출력합니다.
      *
-     * @param lottoResult
+     * @param lottoResult 당첨 횟수와 수익률 정보가 담긴 결과 객체
      */
     public void printResult(LottoResult lottoResult) {
         Map<Prize, Integer> prizeCount = lottoResult.getPrizeCount();
@@ -62,7 +65,7 @@ public class ConsoleOutput {
     /**
      * 당첨 결과를 순서에 맞게 정렬합니다.
      *
-     * @return 정렬된 결과
+     * @return 3개 미만으로 일치한 결과를 제외하고, 조건에 따라 오름차순으로 정렬한 당첨 결과 리스트
      */
     private List<Prize> sortPrizes() {
         return Arrays.stream(Prize.values())
@@ -75,8 +78,8 @@ public class ConsoleOutput {
     /**
      * 주어진 당첨 등수과 횟수를 출력 형식에 맞춰 포맷합니다.
      *
-     * @param prize 포맷팅할 당첨 등급 객체
-     * @param count 해당 등급의 당첨 횟수
+     * @param prize 포맷팅할 당첨 등수 객체
+     * @param count 해당 등수의 당첨 횟수
      * @return 포맷팅된 결과 문자열
      */
     private String formatPrizeLine(Prize prize, int count) {

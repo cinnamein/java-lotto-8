@@ -10,6 +10,9 @@ import lotto.service.LottoResultCalculator;
 import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
+/**
+ * 애플리케이션의 전체 흐름을 제어하는 오케스트레이터 클래스입니다.
+ */
 public class Orchestrator {
 
     private final ConsoleInput consoleInput;
@@ -56,7 +59,7 @@ public class Orchestrator {
     /**
      * 계산된 개수만큼 로또를 구매하고, 랜덤한 번호를 발급합니다.
      *
-     * @param purchaseCount
+     * @param purchaseCount 구매할 로또의 개수
      * @return 발급한 로또 번호 리스트
      */
     private List<Lotto> purchaseLotto(int purchaseCount) {
@@ -90,7 +93,7 @@ public class Orchestrator {
     /**
      * 사용자로부터 당첨 번호를 입력받고 유효성 검사를 수행한 뒤, 값을 반환합니다.
      *
-     * @return 당첨 번호 6자리 배열
+     * @return 당첨 번호 6자리 리스트
      */
     private List<Integer> getWinningNumbers() {
         while (true) {

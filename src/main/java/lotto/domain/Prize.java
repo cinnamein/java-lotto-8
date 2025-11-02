@@ -2,6 +2,9 @@ package lotto.domain;
 
 import java.util.Arrays;
 
+/**
+ * 로또 당첨 등수와 각 등수의 당첨 조건, 상금을 정의하는 Enum 클래스입니다.
+ */
 public enum Prize {
     FULL_BALL(6, false, 2_000_000_000L),
     FIVE_WITH_A_BONUS(5, true, 30_000_000L),
