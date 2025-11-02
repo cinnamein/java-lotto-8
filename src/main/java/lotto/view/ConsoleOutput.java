@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,7 +32,7 @@ public class ConsoleOutput {
      * @param lotto 로또 객체
      */
     public void printLottoNumber(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
         Collections.sort(numbers);
         System.out.println(numbers);
     }
