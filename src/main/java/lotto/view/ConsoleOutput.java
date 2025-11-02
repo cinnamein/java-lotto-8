@@ -87,10 +87,12 @@ public class ConsoleOutput {
      * @return 포맷팅된 결과 문자열
      */
     private String formatPrizeLine(Prize prize, int count) {
+        int matchCount = prize.getMatchCount();
+        String price = formatPrice(prize.getPrize());
         if (prize == Prize.FIVE_WITH_A_BONUS) {
-            return prize.getMatchCount() + "개 일치, 보너스 볼 일치 (" + formatPrice(prize.getPrize()) + ") - " + count + "개";
+            return String.format("%d개 일치, 보너스 볼 일치 (%s) - %d개", matchCount, price, count);
         }
-        return prize.getMatchCount() + "개 일치 (" + formatPrice(prize.getPrize()) + ") - " + count + "개";
+        return String.format("%d개 일치 (%s) - %d개", matchCount, price, count);
     }
 
     /**
