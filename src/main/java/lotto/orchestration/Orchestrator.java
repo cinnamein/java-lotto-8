@@ -132,6 +132,6 @@ public class Orchestrator {
     private void printResult(List<Lotto> lottos, WinningLotto winningLotto, PurchasePrice purchasePrice) {
         LottoResult lottoResult = lottoResultCalculator.calculateResult(lottos, winningLotto, purchasePrice);
         consoleOutput.printResult(lottoResult);
-        consoleOutput.printYield(lottoResult.getYield());
+        consoleOutput.printRate(lottoResult.getRateOfReturn());
     }
 }

@@ -55,11 +55,11 @@ public class ConsoleOutput {
     /**
      * 총 수익률을 출력합니다.
      *
-     * @param yield 수익률
+     * @param rateOfReturn 수익률
      */
-    public void printYield(double yield) {
+    public void printRate(double rateOfReturn) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
-        System.out.println("총 수익률은 " + decimalFormat.format(yield) + "%입니다.");
+        System.out.println("총 수익률은 " + decimalFormat.format(rateOfReturn) + "%입니다.");
     }
 
     public void printErrorMessage(String errorMessage) {

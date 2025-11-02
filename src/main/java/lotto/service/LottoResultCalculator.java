@@ -29,8 +29,8 @@ public class LottoResultCalculator {
             Prize prize = checkWinningPrize(lotto, winningLotto);
             prizeCount.merge(prize, 1, Integer::sum);
         }
-        double yield = calculateYield(prizeCount, purchasePrice);
-        return LottoResult.create(prizeCount, yield);
+        double rateOfReturn = calculateRate(prizeCount, purchasePrice);
+        return LottoResult.create(prizeCount, rateOfReturn);
     }
 
     /**
@@ -75,17 +75,18 @@ public class LottoResultCalculator {
      * 당첨 금액의 수익률을 계산합니다.
      *
      * @param prizeCount 당첨 등수별 횟수
+     * @param purchasePrice 구매 금액
      * @return 최종 수익률을 소수점 둘째 자리에서 반올림한 값
      */
-    private double calculateYield(HashMap<Prize, Integer> prizeCount, PurchasePrice purchasePrice) {
+    private double calculateRate(HashMap<Prize, Integer> prizeCount, PurchasePrice purchasePrice) {
         long totalPrize = prizeCount.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * (long) entry.getValue())
                 .sum();
         BigDecimal prize = new BigDecimal(totalPrize);
         BigDecimal price = new BigDecimal(purchasePrice.getPrice());
         BigDecimal percentage = new BigDecimal("100");
-        BigDecimal yield = prize.multiply(percentage).divide(price, 5, RoundingMode.HALF_UP);
-        BigDecimal finalYield = yield.setScale(1, RoundingMode.HALF_UP);
-        return finalYield.doubleValue();
+        BigDecimal rateOfReturn = prize.multiply(percentage).divide(price, 5, RoundingMode.HALF_UP);
+        BigDecimal finalRate = rateOfReturn.setScale(1, RoundingMode.HALF_UP);
+        return finalRate.doubleValue();
     }
 }

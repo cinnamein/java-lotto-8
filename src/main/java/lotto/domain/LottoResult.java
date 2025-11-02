@@ -9,22 +9,22 @@ import java.util.Map;
 public class LottoResult {
 
     private final Map<Prize, Integer> prizeCount;
-    private final double yield;
+    private final double rateOfReturn;
 
-    private LottoResult(Map<Prize, Integer> prizeCount, double yield) {
+    private LottoResult(Map<Prize, Integer> prizeCount, double rateOfReturn) {
         this.prizeCount = Collections.unmodifiableMap(prizeCount);
-        this.yield = yield;
+        this.rateOfReturn = rateOfReturn;
     }
 
-    public static LottoResult create(Map<Prize, Integer> prizeCount, double yield) {
-        return new LottoResult(prizeCount, yield);
+    public static LottoResult create(Map<Prize, Integer> prizeCount, double rateOfReturn) {
+        return new LottoResult(prizeCount, rateOfReturn);
     }
 
     public Map<Prize, Integer> getPrizeCount() {
         return prizeCount;
     }
 
-    public double getYield() {
-        return yield;
+    public double getRateOfReturn() {
+        return rateOfReturn;
     }
 }
