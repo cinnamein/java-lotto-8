@@ -2,7 +2,7 @@ package lotto.orchestration;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningLotto;
