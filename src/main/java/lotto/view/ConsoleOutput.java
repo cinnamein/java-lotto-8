@@ -62,6 +62,10 @@ public class ConsoleOutput {
         System.out.println("총 수익률은 " + decimalFormat.format(yield) + "%입니다.");
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     /**
      * 당첨 결과를 순서에 맞게 정렬합니다.
      *

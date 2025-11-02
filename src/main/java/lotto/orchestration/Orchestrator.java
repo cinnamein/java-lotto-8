@@ -51,7 +51,7 @@ public class Orchestrator {
                 String inputPrice = consoleInput.inputPrice();
                 return PurchasePrice.from(inputPrice);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutput.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -85,7 +85,7 @@ public class Orchestrator {
                 int bonusNumber = getBonusNumber();
                 return WinningLotto.from(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutput.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -101,7 +101,7 @@ public class Orchestrator {
                 String inputWinningNumbers = consoleInput.inputWinningNumbers();
                 return WinningLotto.parseWinningNumbers(inputWinningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutput.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -117,7 +117,7 @@ public class Orchestrator {
                 String inputBonusNumber = consoleInput.inputBonusNumber();
                 return WinningLotto.parseBonusNumber(inputBonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutput.printErrorMessage(e.getMessage());
             }
         }
     }
