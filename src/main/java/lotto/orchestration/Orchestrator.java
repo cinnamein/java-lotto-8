@@ -19,7 +19,7 @@ public class Orchestrator {
     private final ConsoleOutput consoleOutput;
     private final LottoResultCalculator lottoResultCalculator;
 
-    public Orchestrator(
+    private Orchestrator(
             ConsoleInput consoleInput,
             ConsoleOutput consoleOutput,
             LottoResultCalculator lottoResultCalculator
@@ -27,6 +27,14 @@ public class Orchestrator {
         this.consoleInput = consoleInput;
         this.consoleOutput = consoleOutput;
         this.lottoResultCalculator = lottoResultCalculator;
+    }
+
+    public static Orchestrator create() {
+        return new Orchestrator(
+                new ConsoleInput(),
+                new ConsoleOutput(),
+                new LottoResultCalculator()
+        );
     }
 
     /**
