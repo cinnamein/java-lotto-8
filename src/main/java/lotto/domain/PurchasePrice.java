@@ -16,6 +16,7 @@ public class PurchasePrice {
 
     /**
      * 유효성 검사 후 PurchasePrice 객체 반환
+     *
      * @param inputPrice 입력한 구매 금액
      * @return PurchasePrice 객체
      */
@@ -32,6 +33,7 @@ public class PurchasePrice {
 
     /**
      * 입력한 값을 숫자로 변환합니다.
+     *
      * @param inputPrice 입력한 구매 금액
      * @return long으로 변경한 구매 금액
      * @throws IllegalArgumentException 금액에 문자가 포함되었을 경우
@@ -46,6 +48,7 @@ public class PurchasePrice {
 
     /**
      * 구매 금액이 최소 및 최대 금액을 만족하는지 검증합니다.
+     *
      * @param price 구매 금액
      * @throws IllegalArgumentException 금액이 최소 혹은 최대 금액 바깥에 있을 경우
      */
@@ -60,6 +63,7 @@ public class PurchasePrice {
 
     /**
      * 구매 금액이 1000원의 배수인지 검증합니다.
+     *
      * @param price 구매 금액
      * @throws IllegalArgumentException 금액이 1000원 단위가 아닐 경우
      */
@@ -71,6 +75,7 @@ public class PurchasePrice {
 
     /**
      * 로또 구매 금액으로 로또를 몇 장 구매할 수 있는지 계산합니다.
+     *
      * @return 로또 구매 횟수
      */
     public int getLottoCount() {

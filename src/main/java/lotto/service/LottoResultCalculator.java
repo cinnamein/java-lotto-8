@@ -74,7 +74,7 @@ public class LottoResultCalculator {
     /**
      * 당첨 금액의 수익률을 계산합니다.
      *
-     * @param prizeCount 당첨 등수별 횟수
+     * @param prizeCount    당첨 등수별 횟수
      * @param purchasePrice 구매 금액
      * @return 최종 수익률을 소수점 둘째 자리에서 반올림한 값
      */
